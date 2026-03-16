@@ -1,4 +1,4 @@
-🧬 ENE0332: Tópicos em Engenharia (Biosignals) - 1º/2026
+# 🧬 ENE0332: Tópicos em Engenharia (Biosignals) - 1º/2026
 
 Welcome to my official repository for the **ENE0332 - Topics in Engineering** course at the **University of Brasília (UnB)**. This semester focuses on the processing of biomedical signals and the modeling of physiological systems.
 
@@ -24,6 +24,8 @@ I am **Joao**, a Computer Engineering student currently transitioning into Compu
 ```text
 topicos_2026.1/
 ├── estudos/            # Training scripts, theory testing, and concept proofs.
+│   └── amostragem.m    # Initial test for Nyquist-Shannon Sampling Theorem.
 ├── tarefas/            # Graded Exercise Lists and Home Assignments.
+│   └── lista1_ex1_5.m  # Exercises 1.5 - 1.9 (Semmlow 3rd Ed).
 ├── projeto_final/      # Final semester project (Group-based).
 └── README.md           # You are here!
