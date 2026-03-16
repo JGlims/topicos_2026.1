@@ -1,5 +1,6 @@
 % visualizacao_intro.m - Dominando o Plot
-cls; % Seu alias customizado para limpar tudo 
+clc; clear; % Seu alias customizado para limpar tudo
+close all;
 
 t = 0:0.1:10; % Vetor de tempo (amostragem) [cite: 969]
 sinal_seno = sin(t);
@@ -22,4 +23,4 @@ bar(t(1:20), sinal_seno(1:20)); % Versão em barras [cite: 1067]
 title('Seno (Barras)');
 subplot(2,1,2);
 stem(t(1:20), sinal_seno(1:20)); % Versão discreta (Octave/Signal)
-title('Seno (Discreto/Stem)');  
+title('Seno (Discreto/Stem)');
