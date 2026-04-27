@@ -5,6 +5,9 @@
 
 clc; clear; close all;
 
+% Forca o carregamento do pacote de processamento de sinais (Resolve o erro do findpeaks)
+pkg load signal;
+
 % --- 1. PARAMETROS GERAIS ---
 Fs = 250; % Frequencia de amostragem em Hz
 tempo_segundos = 5 * 60; % 5 minutos (trecho sem ectopicos)
@@ -16,6 +19,9 @@ t = (0:amostras-1) / Fs;
 % PACIENTE JOVEM (f2y03 - Feminina, 28 anos)
 % =========================================================================
 fid_j = fopen('f2y03.dat', 'r');
+if fid_j == -1
+    error('ERRO: Nao achei o arquivo "f2y03.dat". Verifique se o Octave esta na pasta certa!');
+end
 dados_j = fread(fid_j, [3, amostras], 'int16'); 
 fclose(fid_j);
 
@@ -24,8 +30,8 @@ resp_j = dados_j(1, :) / 1000;
 ecg_j  = dados_j(2, :) / 200;
 bp_j   = dados_j(3, :) / 1;
 
-% Deteccao de picos R (Evitando onda T com MinPeakDistance)
-[pks_j, locs_j] = findpeaks(ecg_j, "MinPeakHeight", 0.5, "MinPeakDistance", Fs * 0.4);
+% Deteccao de picos R (Aspas simples e threshold levemente menor para garantir)
+[pks_j, locs_j] = findpeaks(ecg_j, 'MinPeakHeight', 0.3, 'MinPeakDistance', Fs * 0.4);
 
 % Construcao da serie RRI
 tempo_picos_j = t(locs_j);
@@ -42,6 +48,9 @@ pNN50_j = sum(abs(diff(RRI_ms_j)) > 50) / length(RRI_ms_j) * 100;
 % PACIENTE IDOSO (f2o03 - Feminina, 85 anos)
 % =========================================================================
 fid_i = fopen('f2o03.dat', 'r');
+if fid_i == -1
+    error('ERRO: Nao achei o arquivo "f2o03.dat". Verifique se o Octave esta na pasta certa!');
+end
 dados_i = fread(fid_i, [3, amostras], 'int16'); 
 fclose(fid_i);
 
@@ -51,7 +60,7 @@ ecg_i  = dados_i(2, :) / 200;
 bp_i   = dados_i(3, :) / 1;
 
 % Deteccao de picos R
-[pks_i, locs_i] = findpeaks(ecg_i, "MinPeakHeight", 0.5, "MinPeakDistance", Fs * 0.4);
+[pks_i, locs_i] = findpeaks(ecg_i, 'MinPeakHeight', 0.3, 'MinPeakDistance', Fs * 0.4);
 
 % Construcao da serie RRI
 tempo_picos_i = t(locs_i);
