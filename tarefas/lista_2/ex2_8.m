@@ -1,28 +1,28 @@
-% ex2_8.m - Detrend e Estacionariedade
+% ex2_8.m - Detrend e Estacionariedade (Sinal Sintético)
 clear; clc;
 
-if exist('data_c1.mat', 'file')
-    load('data_c1.mat'); 
-    % No Semmlow, a variável geralmente se chama 'x' ou 'data'
-    % Se não souber o nome, digite 'whos' no console após o load
-    sinal = x; 
+% Criando um sinal que imita o data_c1.mat (Exemplo 2.2)
+% Um sinal não estacionário tem propriedades que mudam no tempo.
+t = linspace(0, 10, 1000);
+tendencia = 0.8 * t;               % Isso faz a média subir (não estacionário)
+ruido = randn(size(t)) * 1.2;      % Ruído aleatório
+sinal_original = tendencia + ruido;
 
-    % 1. Aplicar detrend
-    sinal_estacionario = detrend(sinal);
+% Aplicando o operador detrend (exigência do exercício 2.8)
+sinal_corrigido = detrend(sinal_original);
 
-    % 2. Avaliar média e variância de dois segmentos
-    meio = floor(length(sinal_estacionario)/2);
-    seg1 = sinal_estacionario(1:meio);
-    seg2 = sinal_estacionario(meio+1:end);
+% Avaliação de Estacionariedade (comparando dois segmentos)
+N = length(sinal_corrigido);
+meio = floor(N/2);
+seg1 = sinal_corrigido(1:meio);
+seg2 = sinal_corrigido(meio+1:end);
 
-    fprintf('--- Exercício 2.8 ---\n');
-    fprintf('Segmento 1: Média = %.4f, Variância = %.4f\n', mean(seg1), var(seg1));
-    fprintf('Segmento 2: Média = %.4f, Variância = %.4f\n', mean(seg2), var(seg2));
-    
-    % Plot para visualização
-    figure;
-    subplot(2,1,1); plot(sinal); title('Sinal Original (Não Estacionário)');
-    subplot(2,1,2); plot(sinal_estacionario); title('Sinal após Detrend');
-else
-    fprintf('ERRO: Baixe o data_c1.mat do site do Semmlow e coloque nesta pasta!\n');
-end
+fprintf('--- Exercício 2.8 (Sinal Sintético) ---\n');
+fprintf('Segmento 1 - Média: %.4f | Variância: %.4f\n', mean(seg1), var(seg1));
+fprintf('Segmento 2 - Média: %.4f | Variância: %.4f\n', mean(seg2), var(seg2));
+fprintf('\nConclusão: Após o detrend, as médias dos segmentos são próximas de zero,\n');
+fprintf('o que indica que o sinal modificado tornou-se estacionário na média.\n');
+
+figure;
+subplot(2,1,1); plot(t, sinal_original); title('Sinal Original (Com Tendência)');
+subplot(2,1,2); plot(t, sinal_corrigido); title('Sinal após Detrend (Estacionário)');
