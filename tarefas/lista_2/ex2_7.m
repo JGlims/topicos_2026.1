@@ -1,15 +1,14 @@
 % ex2_7.m - Desvio Padrão vs RMS
-% (Certifique-se de rodar o ex2_6.m antes para ter a variável 'v')
+% IMPORTANTE: Rode o ex2_6.m antes para gerar a variável 'v'!
 
-rms_valor = rms(v);
-std_amostral = std(v);    % Usa N-1
-std_populacional = std(v, 1); % Usa N
+% Cálculo do Desvio Padrão Populacional (usando '1' para dividir por N, não N-1)
+std_v = std(v, 1); 
+rms_v = rms(v);
 
-fprintf('--- Exercício 2.7 ---\n');
-fprintf('RMS original: %.4f\n', rms_valor);
-fprintf('STD (N-1): %.4f\n', std_amostral);
-fprintf('STD (N): %.4f\n', std_populacional);
+fprintf('\n--- Exercício 2.7 ---\n');
+fprintf('Desvio Padrão (N): %.4f\n', std_v);
+fprintf('Valor RMS (Ex 2.6): %.4f\n', rms_v);
 
-% Conclusão para o relatório:
-% "A discrepância ocorre porque a função std usa N-1. Ao usar std(v, 1),
-% o valor se iguala ao RMS, já que a média do sinal é praticamente zero."
+% Explicação para o relatório:
+% Como a média do sinal gerado é zero (ou muito próxima, ex: 10^-17), 
+% o desvio padrão se torna matematicamente idêntico ao RMS.
