@@ -1,4 +1,4 @@
-% Exercicio 3.33 - Solucao Definitiva
+% Exercicio 3.33 - Solucao Final Octave
 load('eeg_data.mat'); % Carrega a variavel 'eeg'
 
 fs = 50;
@@ -13,11 +13,10 @@ f_no_avg = (0:N-1) * (fs / N);
 L = 256; % Tamanho do segmento
 noverlap = round(0.99 * L); 
 
-% Pegamos apenas o Pxx. Ignoramos o vetor de frequencia original do Octave usando "~"
-[Pxx_welch, ~] = pwelch(eeg_centered, hamming(L), noverlap, L, fs);
+% A MUDANCA ESTA AQUI: Pedimos apenas 1 saida para evitar o erro do Octave
+Pxx_welch = pwelch(eeg_centered, hamming(L), noverlap, L, fs);
 
-% A SOLUCAO: Criamos nosso proprio eixo X linear cravado em Hz!
-% Vai de 0 ate fs/2 (Nyquist), com o mesmo numero de pontos do Pxx_welch
+% Criamos nosso proprio eixo X linear cravado em Hz (Nyquist = fs/2)
 f_welch = linspace(0, fs/2, length(Pxx_welch));
 
 % Plotagem
