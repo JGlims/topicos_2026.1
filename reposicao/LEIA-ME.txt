@@ -1,0 +1,40 @@
+========================================================================
+ TRABALHO DE REPOSICAO DE FALTAS - ENE0332 (Topicos em Engenharia)
+ Aluno: Joao Gabriel Melo Lima  |  Matricula: 241032617
+ Prof.: Flavia Maria Guerra de Sousa Aranha Oliveira
+ Blocos resolvidos: 5 (5.1-5.4), 6 (5.5-5.8) e 8 (5.14-5.17)
+ Capitulo 5 - Semmlow & Griffel, "Biosignal and Medical Image Processing"
+========================================================================
+
+COMO RODAR (Octave ou MATLAB):
+  1. Abra esta pasta (reposicao) no Octave.
+  2. Rode  run_all.m  para executar tudo e regenerar as figuras, OU
+     rode individualmente cada  prob5_XX.m .
+  (No Octave, os metodos AR precisam do pacote signal: "pkg load signal",
+   ja chamado no inicio de cada script.)
+
+ARQUIVOS:
+  relatorio.pdf .... Relatorio final (enunciados, codigo, graficos, respostas)
+  relatorio.tex .... Fonte LaTeX do relatorio
+  run_all.m ........ Executa todos os problemas de uma vez
+  prob5_01.m ....... Problema 5.1  (Yule-Walker, 4 senoides)
+  prob5_02.m ....... Problema 5.2  (efeito do ruido, SNR -18 dB)
+  prob5_03.m ....... Problema 5.3  (Burg, 2 senoides proximas)
+  prob5_04.m ....... Problema 5.4  (efeito do comprimento, N=64)
+  prob5_05.m ....... Problema 5.5  (covariancia modificada x comprimento)
+  prob5_06.m ....... Problema 5.6  (covariancia modificada x SNR)
+  prob5_07.m ....... Problema 5.7  (AR x Fourier em varios SNR)
+  prob5_08.m ....... Problema 5.8  (ordem do modelo, ar_compare.mat)
+  prob5_14.m ....... Problema 5.14 (identificacao de filtro passa-altas)
+  prob5_15.m ....... Problema 5.15 (filtro rejeita-faixa/notch)
+  prob5_16.m ....... Problema 5.16 (banda larga: AR x Welch)
+  prob5_17.m ....... Problema 5.17 (banda larga: efeito da ordem)
+  pmcov.m .......... Implementacao propria da covariancia modificada
+                     (o pacote signal do Octave nao tem pmcov)
+  sig_noise.m ...... Gerador de senoides em ruido (fornecido com o livro)
+  *.mat ............ Dados usados pelos problemas 5.8, 5.14-5.17
+  figuras/ ......... Graficos gerados (PNG)
+
+OBSERVACAO: as sementes aleatorias estao fixadas em cada script, entao os
+graficos sao exatamente reproduziveis.
+========================================================================
